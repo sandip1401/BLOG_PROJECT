@@ -1,5 +1,6 @@
 const express=require('express');
 const mongoose = require('mongoose');
+// const commentRoutes=require('./routes/commentRoutes');
 const router=express.Router();
 const Post=require('./../models/post');
 const User=require('../models/user');

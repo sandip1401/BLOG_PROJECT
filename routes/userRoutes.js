@@ -57,4 +57,18 @@ router.post('/login', async(req,res)=>{
     }
 })
 
+const blacklistedTokens = new Set(); // Store invalidated tokens (for small-scale apps)
+
+router.post("/logout", (req, res) => {
+    const token = req.headers.authorization?.split(" ")[1]; // Extract token from header
+
+    if (!token) {
+        return res.status(400).json({ message: "Token is required" });
+    }
+
+    blacklistedTokens.add(token); // Add token to blacklist
+
+    return res.json({ message: "Logged out successfully" });
+});
+
 module.exports = router;
